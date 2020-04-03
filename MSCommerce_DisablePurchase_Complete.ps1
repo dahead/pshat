@@ -1,4 +1,4 @@
-Install-Module -Name MSCommerce #once you install you should remove this line
+#Install-Module -Name MSCommerce # once you install you should remove this line
 Import-Module -Name MSCommerce 
 Connect-MSCommerce 
 # sign-in with your global or billing administrator account when prompted
