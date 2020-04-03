@@ -1,14 +1,14 @@
 param (
 	[string]$companyname = $(throw "-companyname is required."),
+	[string]$nobodyreachable = $(throw "-nobodyreachable is required. Add on text for the unreachable option."),
 	[string]$language = $(throw "-language is required (for example: de-DE).")
 )
 write-output "Setting up voicemail texts for users of §companyname $mail."
 
 ForEach ($SolUser in Get-CsOnlineUser -Filter {ProvisionedPlan -ne $null} -ResultSize unlimited) 
 {
-
 	$textWelcome = "$companyname, " + $SolUser.DisplayName
-	$textOOF = "$companyname, " + $SolUser.DisplayName + ". Zur Zeit ist niemand erreichbar."
+	$textOOF = "$companyname, " + $SolUser.DisplayName + $nobodyreachable
 	
 	# write-output "Setting up VoiceMail OOF text for user" $SolUser.DisplayName
 	# Write-Host -NoNewLine 'Press any key to continue...';
@@ -19,6 +19,5 @@ ForEach ($SolUser in Get-CsOnlineUser -Filter {ProvisionedPlan -ne $null} -Resul
 	
 	# Set text
 	Set-CsOnlineVoicemailUserSettings -Identity $SolUser.UserPrincipalName -DefaultGreetingPromptOverwrite $textWelcome
-	Set-CsOnlineVoicemailUserSettings -Identity $SolUser.UserPrincipalName -DefaultOofGreetingPromptOverwrite $textOOF
-	
+	Set-CsOnlineVoicemailUserSettings -Identity $SolUser.UserPrincipalName -DefaultOofGreetingPromptOverwrite $textOOF	
 }
