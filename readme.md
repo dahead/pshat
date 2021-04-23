@@ -4,7 +4,7 @@
 ## Mails Tipps anzeigen
 
 ```
-Set-organizationconfig -MailTipsExternalRecipientsTipsEnabled $true
+Set-OrganizationConfig -MailTipsExternalRecipientsTipsEnabled $true
 ```
 
 ## External Mail Flag anzeigen
