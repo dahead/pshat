@@ -1,5 +1,10 @@
 ### Exchange 
 
+## Login mit MFA
+
+```
+Connect-ExchangeOnline -UserPrincipalName myadminuser@mycompany.de -ShowProgress $True
+```
 
 ## Mails Tipps anzeigen
 
